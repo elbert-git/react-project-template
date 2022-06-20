@@ -1,11 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import InitialLoading from "./initialLoading";
+import InitialLoading from "./components/initialLoading";
+import { getWalletObj } from "./module/web3/wallet";
+import { getContractObj } from "./module/web3/contract";
 
 // --- create context
 export const rootContext = React.createContext();
 // create context hook
 export function useRootContext(){return useContext(rootContext)};
 
+let wallet;
+let contract;
 
 
 export default function RootContext({children}) {
@@ -18,6 +22,8 @@ export default function RootContext({children}) {
   useEffect(()=>{
     const load = async function(){
       /// load start up modules
+      wallet = await getWalletObj();
+      contract = await getContractObj();
       setLoading(true);
     }
     load();
