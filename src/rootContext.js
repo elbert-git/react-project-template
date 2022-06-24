@@ -25,9 +25,9 @@ export default function RootContext({children}) {
    
 
   return (
-    <div className="App" value={contextData}>
+    <rootContext.provider className="App" value={contextData}>
       {loading ? children : <InitialLoading/>}
-    </div>
+    </rootContext.provider>
   );
 }
 
